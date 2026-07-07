@@ -19,8 +19,9 @@ html,body{
 .screen{
   position:absolute;inset:0;
   display:flex;flex-direction:column;
-  align-items:center;justify-content:space-between;
-  padding:22px 16px 18px;
+  align-items:center;justify-content:center;
+  gap:14px;
+  padding:18px 16px;
   opacity:0;pointer-events:none;
   transition:opacity 0.2s;
 }
@@ -30,7 +31,7 @@ html,body{
 .surah-top{
   display:flex;flex-direction:column;
   align-items:center;gap:6px;
-  flex:1;justify-content:center;
+  flex-shrink:0;
 }
 .surah-num{font-size:18px;color:#555;letter-spacing:0.08em;}
 .surah-arabic{
@@ -283,9 +284,20 @@ function showSurah(){
   else{badge.textContent='TAP TO MARK DONE';badge.className='done-badge no';}
 }
 
-function nextSurah(){if(idx<surahs.length-1){idx++;showSurah();}}
-function prevSurah(){if(idx>0){idx--;showSurah();}}
-function toggleDone(){surahs[idx].done=!surahs[idx].done;showSurah();}
+function nextSurah(){idx=(idx+1)%surahs.length;showSurah();}
+function prevSurah(){idx=(idx-1+surahs.length)%surahs.length;showSurah();}
+function toggleDone(){
+  const s=surahs[idx];
+  s.done=!s.done;
+  if(s.done){
+    // Move to end of list
+    surahs.splice(idx,1);
+    surahs.push(s);
+    // Stay on same index (now shows next surah), clamp if we were at end
+    if(idx>=surahs.length)idx=0;
+  }
+  showSurah();
+}
 
 function doShuffle(){
   surahs.forEach(s=>s.done=false);
