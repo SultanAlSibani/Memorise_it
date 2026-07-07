@@ -146,6 +146,16 @@ html,body{
   display:flex;align-items:center;justify-content:center;
 }
 .back-btn:active{background:#2c2c2c;}
+
+/* Home button — large, at bottom of timer screen */
+.home-btn{
+  width:100%;padding:14px 0;
+  border-radius:14px;border:none;
+  background:#1c1c1c;color:#888;
+  font-size:16px;font-weight:500;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.home-btn:active{background:#2c2c2c;color:#fff;}
 </style>
 </head>
 <body>
@@ -191,7 +201,6 @@ html,body{
 
 <!-- ── STOPWATCH SCREEN ── -->
 <div class="screen" id="scr-sw">
-  <button class="back-btn" onclick="showScreen('surah')">‹</button>
   <div class="sw-label">RECITATION TIME</div>
   <div class="sw-time" id="sw-time">00:00:00</div>
   <div class="sw-btns">
@@ -200,6 +209,10 @@ html,body{
   </div>
   <button class="save-btn" id="save-btn" onclick="saveSession()" disabled>Save session</button>
   <div class="sw-msg" id="sw-msg"></div>
+  <button class="home-btn" onclick="showScreen('surah')">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to Surahs
+  </button>
 </div>
 
 <!-- ── SESSIONS SCREEN ── -->
