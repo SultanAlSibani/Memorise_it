@@ -21,159 +21,201 @@ html,body{
 .screen{
   position:absolute;inset:0;
   display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  padding:28px 20px 20px;
+  align-items:center;
+  justify-content:space-between;
+  padding:20px 16px 20px;
   opacity:0;pointer-events:none;
   transition:opacity 0.2s;
 }
 .screen.active{opacity:1;pointer-events:all;}
 
 /* ── Surah screen ── */
-#scr-surah .surah-num{
-  font-size:13px;color:#555;letter-spacing:0.1em;
-  margin-bottom:10px;
+#scr-surah{
+  padding:24px 16px 20px;
 }
-#scr-surah .surah-arabic{
-  font-family:'Amiri',serif;
-  font-size:44px;color:#fff;
-  text-align:center;line-height:1.15;
-  margin-bottom:6px;
-}
-#scr-surah .surah-name{
-  font-size:18px;color:#aaa;
-  text-align:center;margin-bottom:18px;
-}
-#scr-surah .done-badge{
-  font-size:12px;font-weight:600;letter-spacing:0.08em;
-  padding:4px 14px;border-radius:20px;
-  margin-bottom:18px;
-  transition:all 0.2s;
-}
-#scr-surah .done-badge.yes{background:#0a3a18;color:#34c759;}
-#scr-surah .done-badge.no{background:#1a1a1a;color:#555;}
 
-/* Tap zones (left/right invisible, center = check) */
+.surah-top{
+  display:flex;flex-direction:column;
+  align-items:center;
+  gap:6px;
+  flex:1;
+  justify-content:center;
+}
+
+.surah-num{
+  font-size:18px;color:#555;letter-spacing:0.08em;
+}
+.surah-arabic{
+  font-family:'Amiri',serif;
+  font-size:72px;
+  color:#fff;
+  text-align:center;
+  line-height:1.1;
+}
+.surah-name{
+  font-size:26px;
+  color:#aaa;
+  text-align:center;
+}
+.done-badge{
+  font-size:14px;font-weight:600;letter-spacing:0.06em;
+  padding:7px 20px;border-radius:24px;
+  transition:all 0.2s;
+  margin-top:4px;
+}
+.done-badge.yes{background:#0a3a18;color:#34c759;}
+.done-badge.no{background:#1c1c1c;color:#555;}
+
+/* Invisible tap zones */
 .tap-zones{
-  position:absolute;inset:0;
+  position:absolute;
+  left:0;right:0;
+  top:0;bottom:80px;
   display:flex;
 }
 .tap-prev{flex:1;cursor:pointer;}
 .tap-check{flex:1;cursor:pointer;}
 .tap-next{flex:1;cursor:pointer;}
 
-/* Nav row */
+/* Nav + bottom combined bottom section */
+.surah-bottom{
+  width:100%;
+  display:flex;flex-direction:column;
+  align-items:center;gap:12px;
+  flex-shrink:0;
+}
+
 .nav-row{
-  display:flex;align-items:center;gap:20px;
-  margin-top:4px;
+  display:flex;align-items:center;gap:16px;
 }
 .nav-btn{
-  width:44px;height:44px;border-radius:50%;border:none;
-  background:#1a1a1a;color:#fff;
-  font-size:22px;cursor:pointer;
+  width:56px;height:56px;border-radius:50%;border:none;
+  background:#1c1c1c;color:#fff;
+  font-size:28px;cursor:pointer;
   display:flex;align-items:center;justify-content:center;
   flex-shrink:0;
 }
-.nav-btn:active{background:#2a2a2a;}
-.nav-prog{font-size:13px;color:#555;min-width:52px;text-align:center;}
+.nav-btn:active{background:#2c2c2c;}
+.nav-prog{font-size:17px;color:#666;min-width:64px;text-align:center;font-variant-numeric:tabular-nums;}
 
-/* Bottom bar */
 .bottom-bar{
-  position:absolute;bottom:18px;
-  display:flex;gap:12px;
+  display:flex;gap:10px;
 }
 .bar-btn{
-  height:36px;padding:0 16px;
-  border-radius:18px;border:none;
-  background:#1a1a1a;color:#888;
-  font-size:13px;font-weight:500;
-  cursor:pointer;display:flex;align-items:center;gap:6px;
+  height:40px;padding:0 18px;
+  border-radius:20px;border:none;
+  background:#1c1c1c;color:#888;
+  font-size:15px;font-weight:500;
+  cursor:pointer;display:flex;align-items:center;gap:7px;
 }
-.bar-btn:active{background:#2a2a2a;}
-.bar-btn.green{background:#0a3a18;color:#34c759;}
+.bar-btn:active{background:#2c2c2c;}
 
 /* ── Stopwatch screen ── */
-#scr-sw .sw-label{font-size:11px;color:#555;letter-spacing:0.1em;margin-bottom:8px;}
-#scr-sw .sw-time{font-size:46px;font-weight:200;font-variant-numeric:tabular-nums;color:#fff;margin-bottom:24px;letter-spacing:0.02em;}
+#scr-sw{
+  justify-content:space-between;
+  padding:28px 16px 24px;
+}
+#scr-sw .sw-label{font-size:14px;color:#555;letter-spacing:0.1em;}
+#scr-sw .sw-time{
+  font-size:54px;font-weight:200;
+  font-variant-numeric:tabular-nums;
+  color:#fff;letter-spacing:0.02em;
+}
 #scr-sw .sw-btns{display:flex;gap:10px;width:100%;}
 #scr-sw .sw-btn{
-  flex:1;padding:12px 0;border:none;border-radius:12px;
-  font-size:15px;font-weight:500;cursor:pointer;
+  flex:1;padding:16px 0;border:none;border-radius:14px;
+  font-size:18px;font-weight:500;cursor:pointer;
 }
 #scr-sw .sw-btn:active{opacity:0.8;}
 .sbtn-go{background:#34c759;color:#000;}
 .sbtn-pause{background:#0a3a18;color:#34c759;}
-.sbtn-reset{background:#1a1a1a;color:#888;}
+.sbtn-reset{background:#1c1c1c;color:#888;}
 #scr-sw .save-btn{
-  width:100%;margin-top:10px;padding:12px 0;
-  border:1px solid #2a5a30;border-radius:12px;
+  width:100%;padding:15px 0;
+  border:1px solid #2a5a30;border-radius:14px;
   background:#0a3a18;color:#34c759;
-  font-size:15px;font-weight:500;cursor:pointer;
+  font-size:17px;font-weight:500;cursor:pointer;
 }
-#scr-sw .save-btn:disabled{opacity:0.25;cursor:default;}
+#scr-sw .save-btn:disabled{opacity:0.2;cursor:default;}
 #scr-sw .save-btn:not(:disabled):active{background:#0d4a20;}
-#scr-sw .sw-msg{font-size:12px;color:#34c759;margin-top:8px;min-height:16px;text-align:center;}
+#scr-sw .sw-msg{font-size:14px;color:#34c759;text-align:center;min-height:18px;}
 
 /* ── Sessions screen ── */
-#scr-sess{padding:20px 16px;justify-content:flex-start;overflow-y:auto;}
-#scr-sess .sess-title{font-size:14px;color:#555;letter-spacing:0.08em;margin-bottom:12px;text-align:center;width:100%;}
+#scr-sess{
+  padding:20px 14px;
+  justify-content:flex-start;
+  overflow-y:auto;
+}
+#scr-sess .sess-title{
+  font-size:16px;color:#555;letter-spacing:0.08em;
+  margin-bottom:14px;text-align:center;width:100%;
+  flex-shrink:0;
+}
 .sess-item{
-  width:100%;padding:10px 12px;
-  background:#111;border-radius:10px;
-  margin-bottom:8px;flex-shrink:0;
+  width:100%;padding:12px 14px;
+  background:#111;border-radius:12px;
+  margin-bottom:10px;flex-shrink:0;
 }
 .si-top{display:flex;justify-content:space-between;align-items:center;}
-.si-date{font-size:12px;color:#888;}
-.si-time{font-size:16px;font-weight:300;color:#34c759;font-variant-numeric:tabular-nums;}
-.si-detail{font-size:11px;color:#555;margin-top:3px;}
-.si-del{background:none;border:none;color:#333;cursor:pointer;font-size:16px;padding:2px 4px;}
+.si-date{font-size:14px;color:#888;}
+.si-time{font-size:20px;font-weight:300;color:#34c759;font-variant-numeric:tabular-nums;}
+.si-detail{font-size:13px;color:#555;margin-top:4px;}
+.si-del{background:none;border:none;color:#333;cursor:pointer;font-size:22px;padding:2px 6px;}
 .si-del:active{color:#ff453a;}
-.sess-empty{text-align:center;color:#444;font-size:14px;margin-top:40px;line-height:1.6;}
+.sess-empty{text-align:center;color:#444;font-size:16px;margin-top:50px;line-height:1.7;}
 
-/* Back button shared */
+/* Back button */
 .back-btn{
-  position:absolute;top:14px;left:14px;
-  width:32px;height:32px;border-radius:50%;
-  background:#1a1a1a;border:none;color:#666;
-  font-size:18px;cursor:pointer;
+  position:absolute;top:16px;left:16px;
+  width:38px;height:38px;border-radius:50%;
+  background:#1c1c1c;border:none;color:#666;
+  font-size:22px;cursor:pointer;
   display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
 }
-.back-btn:active{background:#2a2a2a;}
+.back-btn:active{background:#2c2c2c;}
 
-/* Transition animation */
-@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.spinning{animation:spin 1s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
 </style>
 </head>
 <body>
 
 <!-- ── SURAH SCREEN ── -->
 <div class="screen active" id="scr-surah">
-  <!-- Invisible tap zones: left=prev, center=check, right=next -->
+
+  <!-- Invisible tap zones -->
   <div class="tap-zones">
     <div class="tap-prev" onclick="prevSurah()"></div>
     <div class="tap-check" onclick="toggleDone()"></div>
     <div class="tap-next" onclick="nextSurah()"></div>
   </div>
 
-  <div class="surah-num" id="s-num">78</div>
-  <div class="surah-arabic" id="s-arabic">النبأ</div>
-  <div class="surah-name" id="s-name">An-Naba'</div>
-  <div class="done-badge no" id="s-done">TAP TO MARK DONE</div>
-
-  <div class="nav-row">
-    <button class="nav-btn" onclick="prevSurah()">‹</button>
-    <span class="nav-prog" id="s-prog">1 / 37</span>
-    <button class="nav-btn" onclick="nextSurah()">›</button>
+  <!-- Main content -->
+  <div class="surah-top">
+    <div class="surah-num" id="s-num">78</div>
+    <div class="surah-arabic" id="s-arabic">النبأ</div>
+    <div class="surah-name" id="s-name">An-Naba'</div>
+    <div class="done-badge no" id="s-done">TAP TO MARK DONE</div>
   </div>
 
-  <div class="bottom-bar">
-    <button class="bar-btn" onclick="showScreen('sw')">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      Timer
-    </button>
-    <button class="bar-btn" onclick="showScreen('sess')">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-      Sessions
-    </button>
+  <!-- Bottom controls -->
+  <div class="surah-bottom">
+    <div class="nav-row">
+      <button class="nav-btn" onclick="prevSurah()">‹</button>
+      <span class="nav-prog" id="s-prog">1 / 37</span>
+      <button class="nav-btn" onclick="nextSurah()">›</button>
+    </div>
+    <div class="bottom-bar">
+      <button class="bar-btn" onclick="showScreen('sw')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Timer
+      </button>
+      <button class="bar-btn" onclick="showScreen('sess')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Sessions
+      </button>
+    </div>
   </div>
 </div>
 
@@ -194,7 +236,7 @@ html,body{
 <div class="screen" id="scr-sess">
   <button class="back-btn" onclick="showScreen('surah')">‹</button>
   <div class="sess-title">SESSIONS</div>
-  <div id="sess-list" style="width:100%;overflow-y:auto;max-height:calc(100vh - 80px);"></div>
+  <div id="sess-list" style="width:100%;overflow-y:auto;flex:1;"></div>
 </div>
 
 <script>
@@ -244,7 +286,6 @@ try{sessions=JSON.parse(localStorage.getItem('w_sessions')||'[]');}catch(e){}
 
 let swRunning=false,swMs=0,swStart=null,swTick=null;
 
-// ── Surah navigation ───────────────────────────────────────
 function showSurah(){
   const s=surahs[idx];
   document.getElementById('s-num').textContent=s.n;
@@ -252,38 +293,34 @@ function showSurah(){
   document.getElementById('s-name').textContent=s.name;
   document.getElementById('s-prog').textContent=`${idx+1} / ${surahs.length}`;
   const badge=document.getElementById('s-done');
-  if(s.done){badge.textContent='✓ DONE';badge.className='done-badge yes';}
+  if(s.done){badge.textContent='✓  DONE';badge.className='done-badge yes';}
   else{badge.textContent='TAP TO MARK DONE';badge.className='done-badge no';}
 }
 
 function nextSurah(){if(idx<surahs.length-1){idx++;showSurah();}}
 function prevSurah(){if(idx>0){idx--;showSurah();}}
+function toggleDone(){surahs[idx].done=!surahs[idx].done;showSurah();}
 
-function toggleDone(){
-  surahs[idx].done=!surahs[idx].done;
-  showSurah();
-}
-
-// ── Swipe detection ────────────────────────────────────────
+// Swipe detection
 let tx=0,ty=0;
 document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
 document.addEventListener('touchend',e=>{
   const dx=e.changedTouches[0].clientX-tx;
   const dy=e.changedTouches[0].clientY-ty;
-  if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>35){
-    const active=document.querySelector('.screen.active');
-    if(active&&active.id==='scr-surah'){dx<0?nextSurah():prevSurah();}
+  if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>30){
+    if(document.getElementById('scr-surah').classList.contains('active')){
+      dx<0?nextSurah():prevSurah();
+    }
   }
 },{passive:true});
 
-// ── Screens ────────────────────────────────────────────────
 function showScreen(name){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('scr-'+name).classList.add('active');
   if(name==='sess')renderSessions();
 }
 
-// ── Stopwatch ──────────────────────────────────────────────
+// Stopwatch
 function pad(n){return String(Math.floor(n)).padStart(2,'0');}
 function fmt(ms){const s=Math.floor(ms/1000),m=Math.floor(s/60),h=Math.floor(m/60);return pad(h)+':'+pad(m%60)+':'+pad(s%60);}
 
@@ -318,8 +355,7 @@ function saveSession(){
   const now=new Date();
   sessions.unshift({
     date:now.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'}),
-    time:fmt(swMs),
-    count:done.length,
+    time:fmt(swMs),count:done.length,
     surahs:done.length>0?done.map(s=>s.name).join(', '):'None'
   });
   try{localStorage.setItem('w_sessions',JSON.stringify(sessions));}catch(e){}
@@ -329,7 +365,6 @@ function saveSession(){
   setTimeout(()=>{m.textContent='';},2000);
 }
 
-// ── Sessions ───────────────────────────────────────────────
 function deleteSession(i){
   sessions.splice(i,1);
   try{localStorage.setItem('w_sessions',JSON.stringify(sessions));}catch(e){}
@@ -355,7 +390,6 @@ function renderSessions(){
     </div>`).join('');
 }
 
-// ── Init ───────────────────────────────────────────────────
 showSurah();
 </script>
 </body>
